@@ -1,0 +1,13 @@
+Gladys BEEP integration
+Copyright 2026 William-De71
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The hives, devices, measurements and alerts come from the BEEP account of each
+user, through the BEEP API (https://api.beep.nl), the open source bee
+monitoring platform of the BEEP foundation (https://beep.nl). The routes and
+answers of the API were read in the source of BEEP
+(https://github.com/beepnl/BEEP, AGPL-3.0); no BEEP code is copied here.
+
+BEEP is a project of the BEEP foundation (Stichting BEEP). This project is not
+affiliated with, endorsed or sponsored by the BEEP foundation.

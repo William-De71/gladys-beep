@@ -1,0 +1,765 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "BEEP",
+  "description": {
+    "en": "Your BEEP hives in Gladys: weight, temperature, swarm and offline alerts, scenes.",
+    "fr": "Vos ruches BEEP dans Gladys : poids, température, alertes d’essaimage et de panne.",
+    "de": "Deine BEEP-Bienenstöcke in Gladys: Gewicht, Temperatur, Schwarm- und Ausfallalarme.",
+    "es": "Sus colmenas BEEP en Gladys: peso, temperatura, alertas de enjambrazón y de fallo."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-beep:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "categories": ["environment", "leisure"],
+  "keywords": [
+    "beekeeping",
+    "apiculture",
+    "Imkerei",
+    "apicultura",
+    "beehive",
+    "ruche",
+    "hive scale",
+    "BEEP base",
+    "swarm",
+    "bees"
+  ],
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-beep/main/cover.jpg",
+  "transports": ["cloud"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "BEEP account",
+        "fr": "Compte BEEP",
+        "de": "BEEP-Konto",
+        "es": "Cuenta BEEP"
+      },
+      "description": {
+        "en": "BEEP is the open source bee monitoring platform of the BEEP foundation (app.beep.nl): the BEEP base weighs a hive and measures its temperature. Enter the email and password of your BEEP account: BEEP gives an API access only after a login. The integration reads your devices, their last measurements and your alerts; it never changes anything in BEEP.",
+        "fr": "BEEP est la plateforme open source de suivi des ruches de la fondation BEEP (app.beep.nl) : la BEEP base pèse une ruche et mesure sa température. Saisissez l’e-mail et le mot de passe de votre compte BEEP : BEEP ne donne accès à son API qu’après une connexion. L’intégration lit vos appareils, leurs dernières mesures et vos alertes ; elle ne modifie jamais rien dans BEEP.",
+        "de": "BEEP ist die Open-Source-Plattform der BEEP-Stiftung zur Überwachung von Bienenstöcken (app.beep.nl): Die BEEP base wiegt einen Bienenstock und misst seine Temperatur. Gib die E-Mail-Adresse und das Passwort deines BEEP-Kontos ein: BEEP gewährt API-Zugriff nur nach einer Anmeldung. Die Integration liest deine Geräte, ihre letzten Messwerte und deine Alarme; sie ändert nie etwas in BEEP.",
+        "es": "BEEP es la plataforma de código abierto de la fundación BEEP para el seguimiento de colmenas (app.beep.nl): la BEEP base pesa una colmena y mide su temperatura. Introduzca el correo electrónico y la contraseña de su cuenta BEEP: BEEP solo da acceso a su API tras iniciar sesión. La integración lee sus dispositivos, sus últimas mediciones y sus alertas; nunca modifica nada en BEEP."
+      }
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "required": true,
+      "label": {
+        "en": "Email",
+        "fr": "E-mail",
+        "de": "E-Mail-Adresse",
+        "es": "Correo electrónico"
+      },
+      "description": {
+        "en": "The email of your BEEP account.",
+        "fr": "L’e-mail de votre compte BEEP.",
+        "de": "Die E-Mail-Adresse deines BEEP-Kontos.",
+        "es": "El correo electrónico de su cuenta BEEP."
+      },
+      "placeholder": {
+        "en": "beekeeper@example.com",
+        "fr": "apiculteur@exemple.fr",
+        "de": "imker@beispiel.de",
+        "es": "apicultor@ejemplo.es"
+      }
+    },
+    {
+      "key": "password",
+      "type": "secret",
+      "required": true,
+      "label": {
+        "en": "Password",
+        "fr": "Mot de passe",
+        "de": "Passwort",
+        "es": "Contraseña"
+      },
+      "description": {
+        "en": "It stays in Gladys, is sent only to api.beep.nl and is never shown again nor logged.",
+        "fr": "Il reste dans Gladys, n’est envoyé qu’à api.beep.nl et n’est jamais réaffiché ni journalisé.",
+        "de": "Es bleibt in Gladys, wird nur an api.beep.nl gesendet und nie wieder angezeigt oder protokolliert.",
+        "es": "Se queda en Gladys, solo se envía a api.beep.nl y nunca se vuelve a mostrar ni se registra."
+      }
+    },
+    {
+      "key": "options",
+      "type": "section",
+      "label": {
+        "en": "Options",
+        "fr": "Options",
+        "de": "Optionen",
+        "es": "Opciones"
+      }
+    },
+    {
+      "key": "interval",
+      "type": "select",
+      "required": false,
+      "default": "15",
+      "label": {
+        "en": "Reading every",
+        "fr": "Lecture toutes les",
+        "de": "Abfrage alle",
+        "es": "Lectura cada"
+      },
+      "description": {
+        "en": "A BEEP base sends a measurement every 15 minutes by default. Each reading asks BEEP 2 times plus once per device.",
+        "fr": "Une BEEP base envoie une mesure toutes les 15 minutes par défaut. Chaque lecture interroge BEEP 2 fois, plus une fois par appareil.",
+        "de": "Eine BEEP base sendet standardmäßig alle 15 Minuten einen Messwert. Jede Abfrage stellt 2 Anfragen an BEEP, plus eine pro Gerät.",
+        "es": "Una BEEP base envía una medición cada 15 minutos por defecto. Cada lectura consulta BEEP 2 veces, más una por dispositivo."
+      },
+      "options": [
+        {
+          "value": "5",
+          "label": {
+            "en": "5 minutes",
+            "fr": "5 minutes",
+            "de": "5 Minuten",
+            "es": "5 minutos"
+          }
+        },
+        {
+          "value": "15",
+          "label": {
+            "en": "15 minutes (recommended)",
+            "fr": "15 minutes (recommandé)",
+            "de": "15 Minuten (empfohlen)",
+            "es": "15 minutos (recomendado)"
+          }
+        },
+        {
+          "value": "30",
+          "label": {
+            "en": "30 minutes",
+            "fr": "30 minutes",
+            "de": "30 Minuten",
+            "es": "30 minutos"
+          }
+        }
+      ]
+    },
+    {
+      "key": "swarm_drop_kg",
+      "type": "select",
+      "required": false,
+      "default": "1",
+      "label": {
+        "en": "Swarm: weight loss within an hour",
+        "fr": "Essaimage : perte de poids en une heure",
+        "de": "Schwarm: Gewichtsverlust in einer Stunde",
+        "es": "Enjambrazón: pérdida de peso en una hora"
+      },
+      "description": {
+        "en": "A swarm leaving takes a large part of the colony at once. Opening the hive and taking frames out also makes the weight fall: choose a value above what a visit removes.",
+        "fr": "Un essaim qui part emporte d’un coup une grande partie de la colonie. Ouvrir la ruche et sortir des cadres fait aussi baisser le poids : choisissez une valeur supérieure à ce qu’une visite retire.",
+        "de": "Ein abgehender Schwarm nimmt auf einmal einen großen Teil des Volkes mit. Auch das Öffnen des Stocks und das Herausnehmen von Waben senken das Gewicht: Wähle einen Wert über dem, was eine Durchsicht entfernt.",
+        "es": "Un enjambre que se va se lleva de golpe una gran parte de la colonia. Abrir la colmena y sacar cuadros también hace bajar el peso: elija un valor superior a lo que retira una revisión."
+      },
+      "options": [
+        {
+          "value": "0.5",
+          "label": {
+            "en": "0.5 kg",
+            "fr": "0,5 kg",
+            "de": "0,5 kg",
+            "es": "0,5 kg"
+          }
+        },
+        {
+          "value": "1",
+          "label": {
+            "en": "1 kg (recommended)",
+            "fr": "1 kg (recommandé)",
+            "de": "1 kg (empfohlen)",
+            "es": "1 kg (recomendado)"
+          }
+        },
+        {
+          "value": "1.5",
+          "label": {
+            "en": "1.5 kg",
+            "fr": "1,5 kg",
+            "de": "1,5 kg",
+            "es": "1,5 kg"
+          }
+        },
+        {
+          "value": "2",
+          "label": {
+            "en": "2 kg",
+            "fr": "2 kg",
+            "de": "2 kg",
+            "es": "2 kg"
+          }
+        },
+        {
+          "value": "3",
+          "label": {
+            "en": "3 kg",
+            "fr": "3 kg",
+            "de": "3 kg",
+            "es": "3 kg"
+          }
+        }
+      ]
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "default": "auto",
+      "label": {
+        "en": "Language of the texts",
+        "fr": "Langue des textes",
+        "de": "Sprache der Texte",
+        "es": "Idioma de los textos"
+      },
+      "description": {
+        "en": "Device names and the texts given to scenes. Automatic: the language of the last widget shown.",
+        "fr": "Noms des appareils et textes transmis aux scènes. Automatique : la langue du dernier widget affiché.",
+        "de": "Gerätenamen und die an Szenen übergebenen Texte. Automatisch: die Sprache des zuletzt angezeigten Widgets.",
+        "es": "Nombres de los dispositivos y textos que reciben las escenas. Automático: el idioma del último widget mostrado."
+      },
+      "options": [
+        {
+          "value": "auto",
+          "label": {
+            "en": "Automatic",
+            "fr": "Automatique",
+            "de": "Automatisch",
+            "es": "Automático"
+          }
+        },
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "English",
+            "de": "English",
+            "es": "English"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "Français",
+            "fr": "Français",
+            "de": "Français",
+            "es": "Français"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "Deutsch",
+            "fr": "Deutsch",
+            "de": "Deutsch",
+            "es": "Deutsch"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Español",
+            "fr": "Español",
+            "de": "Español",
+            "es": "Español"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "key": "check",
+      "timeout_seconds": 90,
+      "label": {
+        "en": "Read BEEP now",
+        "fr": "Lire BEEP maintenant",
+        "de": "BEEP jetzt abfragen",
+        "es": "Leer BEEP ahora"
+      },
+      "description": {
+        "en": "Logs in, then reads the devices, their last measurements and the alerts now.",
+        "fr": "Se connecte, puis lit maintenant les appareils, leurs dernières mesures et les alertes.",
+        "de": "Meldet sich an und liest jetzt die Geräte, ihre letzten Messwerte und die Alarme.",
+        "es": "Inicia sesión y lee ahora los dispositivos, sus últimas mediciones y las alertas."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "apiary",
+      "icon": "grid",
+      "label": {
+        "en": "Apiary",
+        "fr": "Rucher",
+        "de": "Bienenstand",
+        "es": "Colmenar"
+      },
+      "description": {
+        "en": "Each hive: weight and change of the day, temperature, last message, online or not.",
+        "fr": "Chaque ruche : poids et variation du jour, température, dernier message, en ligne ou non.",
+        "de": "Jeder Bienenstock: Gewicht und Tagesänderung, Temperatur, letzte Meldung, online oder nicht.",
+        "es": "Cada colmena: peso y variación del día, temperatura, último mensaje, en línea o no."
+      }
+    },
+    {
+      "key": "weight",
+      "icon": "trending-up",
+      "label": {
+        "en": "Hive weight",
+        "fr": "Poids des ruches",
+        "de": "Stockgewicht",
+        "es": "Peso de las colmenas"
+      },
+      "description": {
+        "en": "The weight of the last 7 days: one curve per hive (4 at most), or the hive you choose.",
+        "fr": "Le poids des 7 derniers jours : une courbe par ruche (4 au plus), ou la ruche choisie.",
+        "de": "Das Gewicht der letzten 7 Tage: eine Kurve pro Stock (höchstens 4) oder der gewählte Stock.",
+        "es": "El peso de los últimos 7 días: una curva por colmena (4 como máximo) o la colmena elegida."
+      },
+      "settings": [
+        {
+          "key": "hive",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          },
+          "description": {
+            "en": "Empty: the first 4 hives that weigh.",
+            "fr": "Vide : les 4 premières ruches pesées.",
+            "de": "Leer: die ersten 4 gewogenen Stöcke.",
+            "es": "Vacío: las 4 primeras colmenas con peso."
+          }
+        }
+      ]
+    },
+    {
+      "key": "alerts",
+      "icon": "bell",
+      "label": {
+        "en": "BEEP alerts",
+        "fr": "Alertes BEEP",
+        "de": "BEEP-Alarme",
+        "es": "Alertas de BEEP"
+      },
+      "description": {
+        "en": "The alerts raised by the alert rules of your BEEP account, the latest first.",
+        "fr": "Les alertes levées par les règles d’alerte de votre compte BEEP, les plus récentes d’abord.",
+        "de": "Die von den Alarmregeln deines BEEP-Kontos ausgelösten Alarme, die neuesten zuerst.",
+        "es": "Las alertas generadas por las reglas de alerta de su cuenta BEEP, las más recientes primero."
+      }
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "swarm_suspected",
+      "label": {
+        "en": "BEEP: a swarm may have left",
+        "fr": "BEEP : un essaim est peut-être parti",
+        "de": "BEEP: Vielleicht ist ein Schwarm abgegangen",
+        "es": "BEEP: puede que haya salido un enjambre"
+      },
+      "description": {
+        "en": "The weight of a hive fell by the configured drop below its highest value of the last hour. Once per hive per 6 hours.",
+        "fr": "Le poids d’une ruche est tombé de la baisse configurée sous sa valeur la plus haute de la dernière heure. Une fois par ruche toutes les 6 heures.",
+        "de": "Das Gewicht eines Stocks ist um den eingestellten Wert unter seinen Höchstwert der letzten Stunde gefallen. Einmal pro Stock alle 6 Stunden.",
+        "es": "El peso de una colmena cayó la bajada configurada por debajo de su valor más alto de la última hora. Una vez por colmena cada 6 horas."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          },
+          "description": {
+            "en": "Leave empty for any hive.",
+            "fr": "Laissez vide pour toutes les ruches.",
+            "de": "Leer lassen für jeden Bienenstock.",
+            "es": "Déjelo vacío para cualquier colmena."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Gladys device",
+            "fr": "Appareil Gladys",
+            "de": "Gladys-Gerät",
+            "es": "Dispositivo de Gladys"
+          }
+        },
+        {
+          "key": "hive",
+          "type": "string",
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "BEEP device",
+            "fr": "Appareil BEEP",
+            "de": "BEEP-Gerät",
+            "es": "Dispositivo BEEP"
+          }
+        },
+        {
+          "key": "weight_before",
+          "type": "number",
+          "label": {
+            "en": "Weight before (kg)",
+            "fr": "Poids avant (kg)",
+            "de": "Gewicht vorher (kg)",
+            "es": "Peso antes (kg)"
+          }
+        },
+        {
+          "key": "weight_after",
+          "type": "number",
+          "label": {
+            "en": "Weight after (kg)",
+            "fr": "Poids après (kg)",
+            "de": "Gewicht nachher (kg)",
+            "es": "Peso después (kg)"
+          }
+        },
+        {
+          "key": "drop_kg",
+          "type": "number",
+          "label": {
+            "en": "Weight loss (kg)",
+            "fr": "Perte de poids (kg)",
+            "de": "Gewichtsverlust (kg)",
+            "es": "Pérdida de peso (kg)"
+          }
+        },
+        {
+          "key": "measured_at",
+          "type": "string",
+          "label": {
+            "en": "Measured at (ISO)",
+            "fr": "Mesuré le (ISO)",
+            "de": "Gemessen am (ISO)",
+            "es": "Medido el (ISO)"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        }
+      ]
+    },
+    {
+      "key": "device_offline",
+      "label": {
+        "en": "BEEP: a device stopped sending",
+        "fr": "BEEP : un appareil n’envoie plus rien",
+        "de": "BEEP: Ein Gerät sendet nicht mehr",
+        "es": "BEEP: un dispositivo dejó de enviar"
+      },
+      "description": {
+        "en": "BEEP no longer receives the measurements of a device (after twice its sending interval): empty battery, no network, theft.",
+        "fr": "BEEP ne reçoit plus les mesures d’un appareil (après deux fois son intervalle d’envoi) : batterie vide, pas de réseau, vol.",
+        "de": "BEEP empfängt die Messwerte eines Geräts nicht mehr (nach dem Doppelten seines Sendeintervalls): leere Batterie, kein Netz, Diebstahl.",
+        "es": "BEEP ya no recibe las mediciones de un dispositivo (tras el doble de su intervalo de envío): batería agotada, sin red, robo."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          },
+          "description": {
+            "en": "Leave empty for any hive.",
+            "fr": "Laissez vide pour toutes les ruches.",
+            "de": "Leer lassen für jeden Bienenstock.",
+            "es": "Déjelo vacío para cualquier colmena."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Gladys device",
+            "fr": "Appareil Gladys",
+            "de": "Gladys-Gerät",
+            "es": "Dispositivo de Gladys"
+          }
+        },
+        {
+          "key": "hive",
+          "type": "string",
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "BEEP device",
+            "fr": "Appareil BEEP",
+            "de": "BEEP-Gerät",
+            "es": "Dispositivo BEEP"
+          }
+        },
+        {
+          "key": "last_message_at",
+          "type": "string",
+          "label": {
+            "en": "Last message (ISO)",
+            "fr": "Dernier message (ISO)",
+            "de": "Letzte Meldung (ISO)",
+            "es": "Último mensaje (ISO)"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        }
+      ]
+    },
+    {
+      "key": "beep_alert",
+      "label": {
+        "en": "BEEP: alert",
+        "fr": "BEEP : alerte",
+        "de": "BEEP: Alarm",
+        "es": "BEEP: alerta"
+      },
+      "description": {
+        "en": "An alert rule of your BEEP account fired (set in the BEEP app): a new alert, or the same one raised again. At most 10 per reading.",
+        "fr": "Une règle d’alerte de votre compte BEEP s’est déclenchée (réglée dans l’application BEEP) : nouvelle alerte, ou la même levée de nouveau. 10 au plus par lecture.",
+        "de": "Eine Alarmregel deines BEEP-Kontos hat ausgelöst (in der BEEP-App eingestellt): ein neuer Alarm oder derselbe erneut. Höchstens 10 pro Abfrage.",
+        "es": "Se activó una regla de alerta de su cuenta BEEP (configurada en la aplicación BEEP): una alerta nueva o la misma de nuevo. 10 como máximo por lectura."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          },
+          "description": {
+            "en": "Leave empty for any hive.",
+            "fr": "Laissez vide pour toutes les ruches.",
+            "de": "Leer lassen für jeden Bienenstock.",
+            "es": "Déjelo vacío para cualquier colmena."
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "rule",
+          "type": "string",
+          "label": {
+            "en": "Alert rule",
+            "fr": "Règle d’alerte",
+            "de": "Alarmregel",
+            "es": "Regla de alerta"
+          }
+        },
+        {
+          "key": "value",
+          "type": "string",
+          "label": {
+            "en": "Value",
+            "fr": "Valeur",
+            "de": "Wert",
+            "es": "Valor"
+          }
+        },
+        {
+          "key": "device",
+          "type": "string",
+          "label": {
+            "en": "Gladys device",
+            "fr": "Appareil Gladys",
+            "de": "Gladys-Gerät",
+            "es": "Dispositivo de Gladys"
+          }
+        },
+        {
+          "key": "hive",
+          "type": "string",
+          "label": {
+            "en": "Hive",
+            "fr": "Ruche",
+            "de": "Bienenstock",
+            "es": "Colmena"
+          }
+        },
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "BEEP device",
+            "fr": "Appareil BEEP",
+            "de": "BEEP-Gerät",
+            "es": "Dispositivo BEEP"
+          }
+        },
+        {
+          "key": "location",
+          "type": "string",
+          "label": {
+            "en": "Apiary",
+            "fr": "Rucher",
+            "de": "Bienenstand",
+            "es": "Colmenar"
+          }
+        },
+        {
+          "key": "count",
+          "type": "number",
+          "label": {
+            "en": "Times raised",
+            "fr": "Nombre de déclenchements",
+            "de": "Anzahl der Auslösungen",
+            "es": "Veces generada"
+          }
+        },
+        {
+          "key": "alert_id",
+          "type": "number",
+          "label": {
+            "en": "BEEP alert id",
+            "fr": "Identifiant de l’alerte BEEP",
+            "de": "BEEP-Alarm-ID",
+            "es": "Identificador de la alerta BEEP"
+          }
+        },
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "apiary_summary",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "BEEP: summary of the apiary",
+        "fr": "BEEP : résumé du rucher",
+        "de": "BEEP: Zusammenfassung des Bienenstands",
+        "es": "BEEP: resumen del colmenar"
+      },
+      "description": {
+        "en": "One line per hive (weight, change of the day, temperature, last message), for a message or a spoken answer.",
+        "fr": "Une ligne par ruche (poids, variation du jour, température, dernier message), pour un message ou une réponse vocale.",
+        "de": "Eine Zeile pro Bienenstock (Gewicht, Tagesänderung, Temperatur, letzte Meldung), für eine Nachricht oder eine Sprachantwort.",
+        "es": "Una línea por colmena (peso, variación del día, temperatura, último mensaje), para un mensaje o una respuesta de voz."
+      },
+      "fields": [],
+      "outputs": [
+        {
+          "key": "summary",
+          "type": "string",
+          "label": {
+            "en": "Summary",
+            "fr": "Résumé",
+            "de": "Zusammenfassung",
+            "es": "Resumen"
+          }
+        },
+        {
+          "key": "hives",
+          "type": "number",
+          "label": {
+            "en": "Hives",
+            "fr": "Ruches",
+            "de": "Bienenstöcke",
+            "es": "Colmenas"
+          }
+        },
+        {
+          "key": "offline",
+          "type": "number",
+          "label": {
+            "en": "Offline devices",
+            "fr": "Appareils hors ligne",
+            "de": "Geräte offline",
+            "es": "Dispositivos sin conexión"
+          }
+        },
+        {
+          "key": "alerts",
+          "type": "number",
+          "label": {
+            "en": "Alerts",
+            "fr": "Alertes",
+            "de": "Alarme",
+            "es": "Alertas"
+          }
+        },
+        {
+          "key": "total_weight_kg",
+          "type": "number",
+          "label": {
+            "en": "Total weight (kg)",
+            "fr": "Poids total (kg)",
+            "de": "Gesamtgewicht (kg)",
+            "es": "Peso total (kg)"
+          }
+        }
+      ]
+    }
+  ]
+}

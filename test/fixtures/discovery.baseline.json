@@ -1,0 +1,456 @@
+{
+  "devices": {
+    "full": {
+      "external_id": "ext:beep:device:101",
+      "should_poll": false,
+      "params": ["BEEP_DEVICE_ID", "BEEP_DEVICE_KEY"],
+      "features": [
+        {
+          "external_id": "ext:beep:device:101:weight",
+          "category": "counter-sensor",
+          "type": "decimal",
+          "min": -50,
+          "max": 500,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:weight_change_today",
+          "category": "counter-sensor",
+          "type": "decimal",
+          "min": -50,
+          "max": 500,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_inside",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:humidity_inside",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:humidity",
+          "category": "humidity-sensor",
+          "type": "decimal",
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:pressure",
+          "category": "pressure-sensor",
+          "type": "decimal",
+          "unit": "hPa",
+          "min": 300,
+          "max": 1200,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:light",
+          "category": "light-sensor",
+          "type": "decimal",
+          "unit": "lux",
+          "min": 0,
+          "max": 200000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:sound_level",
+          "category": "noise-sensor",
+          "type": "decimal",
+          "unit": "decibel",
+          "min": 0,
+          "max": 150,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:bees_in",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 1000000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:bees_out",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 1000000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:battery_voltage",
+          "category": "energy-sensor",
+          "type": "voltage",
+          "unit": "volt",
+          "min": 0,
+          "max": 15,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_0",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_1",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_2",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_3",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_4",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_5",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_6",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_7",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_8",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:101:temperature_probe_9",
+          "category": "temperature-sensor",
+          "type": "decimal",
+          "unit": "celsius",
+          "min": -40,
+          "max": 80,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    },
+    "empty": {
+      "external_id": "ext:beep:device:103",
+      "should_poll": false,
+      "params": ["BEEP_DEVICE_ID", "BEEP_DEVICE_KEY"],
+      "features": [
+        {
+          "external_id": "ext:beep:device:103:weight",
+          "category": "counter-sensor",
+          "type": "decimal",
+          "min": -50,
+          "max": 500,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:beep:device:103:weight_change_today",
+          "category": "counter-sensor",
+          "type": "decimal",
+          "min": -50,
+          "max": 500,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "actions": ["check"],
+    "config_schema": [
+      {
+        "key": "intro",
+        "type": "section"
+      },
+      {
+        "key": "email",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "type": "secret"
+      },
+      {
+        "key": "options",
+        "type": "section"
+      },
+      {
+        "key": "interval",
+        "type": "select",
+        "options": ["5", "15", "30"]
+      },
+      {
+        "key": "swarm_drop_kg",
+        "type": "select",
+        "options": ["0.5", "1", "1.5", "2", "3"]
+      },
+      {
+        "key": "language",
+        "type": "select",
+        "options": ["auto", "en", "fr", "de", "es"]
+      }
+    ],
+    "scene_triggers": [
+      {
+        "key": "swarm_suspected",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "hive",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "weight_before",
+            "type": "number"
+          },
+          {
+            "key": "weight_after",
+            "type": "number"
+          },
+          {
+            "key": "drop_kg",
+            "type": "number"
+          },
+          {
+            "key": "measured_at",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "key": "device_offline",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "hive",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "last_message_at",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "key": "beep_alert",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "rule",
+            "type": "string"
+          },
+          {
+            "key": "value",
+            "type": "string"
+          },
+          {
+            "key": "device",
+            "type": "string"
+          },
+          {
+            "key": "hive",
+            "type": "string"
+          },
+          {
+            "key": "device_name",
+            "type": "string"
+          },
+          {
+            "key": "location",
+            "type": "string"
+          },
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "alert_id",
+            "type": "number"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "scene_actions": [
+      {
+        "key": "apiary_summary",
+        "fields": [],
+        "outputs": [
+          {
+            "key": "summary",
+            "type": "string"
+          },
+          {
+            "key": "hives",
+            "type": "number"
+          },
+          {
+            "key": "offline",
+            "type": "number"
+          },
+          {
+            "key": "alerts",
+            "type": "number"
+          },
+          {
+            "key": "total_weight_kg",
+            "type": "number"
+          }
+        ]
+      }
+    ],
+    "widgets": [
+      {
+        "key": "apiary",
+        "settings": [],
+        "options": {}
+      },
+      {
+        "key": "weight",
+        "settings": ["hive"],
+        "options": {}
+      },
+      {
+        "key": "alerts",
+        "settings": [],
+        "options": {}
+      }
+    ]
+  }
+}
